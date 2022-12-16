@@ -1,0 +1,50 @@
+.wrapper {
+  font-size: 1.6rem;
+  border-radius: 4px;
+  font-weight: 600;
+  min-width: 100px;
+  padding: 9px 16px;
+  cursor: pointer;
+}
+
+.buttonPrimary {
+  background-color: var(--main-color);
+  color: var(--white-color);
+  &:hover {
+    background-color: --extra-color;
+  }
+}
+
+.buttonSmall {
+  padding: 0 10px;
+  border: 1px solid var(--primary-color);
+  min-width: 88px;
+  box-sizing: border-box;
+  line-height: 22px;
+  font-weight: 500;
+  color: var(--primary-color);
+  &:hover {
+    background-color: rgba(254, 44, 85, 0.06);
+  }
+}
+
+.buttonLarge {
+  min-width: 168px;
+  min-height: 48px;
+  font-size: 18px;
+  line-height: 25px;
+  font-weight: 600;
+  padding: 6px 8px;
+  border: 1px solid var(--primary-color);
+  width: 324px;
+  color: var(--primary-color);
+  &:hover {
+    background-color: rgba(254, 44, 85, 0.06);
+  }
+}
+
+.buttonUpload {
+  &:hover {
+    text-decoration: underline;
+  }
+}

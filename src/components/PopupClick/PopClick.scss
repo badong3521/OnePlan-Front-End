@@ -1,0 +1,35 @@
+.wrapper-model-click {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  background-color: var(--background-color-model);
+  height: 1000px;
+  margin-top: 70px;
+  animation: fadeIn 0.3s;
+  .pop {
+    right: 0;
+    position: absolute;
+    background-color: var(--background-color);
+    width: 300px;
+    .pop-item {
+      margin: 10px 20px;
+      &:hover {
+        border-bottom: 1px solid var(--text-color-main);
+      }
+    }
+  }
+}
+
+//Key Frame
+@keyframes fadeIn {
+  from {
+    right: -260px;
+    opacity: 0.1;
+  }
+  to {
+    right: 0;
+    opacity: 1;
+  }
+}

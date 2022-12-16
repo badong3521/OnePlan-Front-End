@@ -1,0 +1,13 @@
+.wrapper-pop-hover {
+  position: absolute;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  background-color: var(--background-color);
+  padding: 10px;
+  .navName {
+    padding: 8px 10px;
+    font-size: 12px;
+    &:hover {
+      border-bottom: 1px solid var(--text-color-main);
+    }
+  }
+}

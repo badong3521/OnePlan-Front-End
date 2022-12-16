@@ -1,0 +1,88 @@
+.wrapper-sidebar {
+    background-color: var(--white-color);
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 25px 30px;
+
+    .container-sidebar {
+        .information-user {
+            display: flex;
+            justify-content: start;
+            align-items: center;
+            border-bottom: 1px solid #999;
+            padding-bottom: 22px;
+
+            .avatar {}
+
+            .info {
+                margin-left: 20px;
+
+                .name {
+                    color: var(--text-color);
+                    font-weight: 500;
+                    font-size: 16px;
+                }
+
+                .gmail {
+                    color: var(--text-color);
+                    font-weight: 500;
+                    font-size: 16px;
+
+                }
+            }
+        }
+
+        .group-company {
+            display: flex;
+            flex-direction: column;
+            padding: 15px 0;
+
+            .company {
+                margin: 5px 0;
+                font-weight: 600;
+                font-size: 16px;
+            }
+        }
+    }
+
+    .btn-new-task {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        .ic-plus {
+            
+        }
+
+        .text-add {
+            font-weight: 600;
+            font-size: 16px;
+            margin-left: 8px;
+        }
+    }
+
+    .footer-sidebar {
+        display: flex;
+        flex-direction: column;
+
+        .noti {
+            font-weight: 600;
+            padding: 5px 0;
+            font-size: 16px;
+        }
+
+        .setting {
+            font-weight: 600;
+            padding: 5px 0;
+            font-size: 16px;
+        }
+
+        .profile {
+            font-weight: 600;
+            padding: 5px 0;
+            font-size: 16px;
+        }
+    }
+}
