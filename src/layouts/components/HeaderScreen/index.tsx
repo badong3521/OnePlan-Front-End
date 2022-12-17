@@ -1,8 +1,6 @@
-import { useRef, useState } from 'react';
 import classNames from 'classnames';
 import styles from './Header.scss';
-// import Drawer, { RefModalPopup } from '../../../../src/components/Drawer';
-import { Button, Drawer } from 'antd';
+import { images } from '../../../assets';
 
 const cx = classNames.bind(styles);
 
@@ -12,19 +10,22 @@ function HeaderScreen({ drawerCheck }) {
   return (
     <>
       <div className={cx('wrapper-header')}>
-        <a href="/">
-          <h1 className={cx('header')}>Header</h1>
-          {/* <div className={cx('image')}>
-            <img src={images.logo} alt="Logo" className={cx('image-logo')} width={55} />
-          </div> */}
-        </a>
-        <button
+        <div className={cx('logo')}>
+          <img src={images.textOnebox} width={230} />
+        </div>
+        <div className={cx('btn-group')}>
+          <button className={cx('btn-export-report')}>Xuất báo cáo</button>
+          <button className={cx('btn-import-excel')}>Thêm báo cáo</button>
+        </div>
+        
+        
+        {/* <button
           onClick={() => {
             drawerCheck.current?.show();
           }}
         >
           OPEN DRAWER
-        </button>
+        </button> */}
       </div>
     </>
   );

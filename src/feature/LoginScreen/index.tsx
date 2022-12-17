@@ -1,12 +1,5 @@
 import { useEffect, useState } from 'react';
 import 'firebase/compat/auth';
-import firebase from 'firebase/compat/app';
-import {
-  onAuthStateChanged,
-  signInWithEmailAndPassword,
-  createUserWithEmailAndPassword,
-  getAuth,
-} from 'firebase/auth';
 import { Formik, Field, Form, FormikHelpers } from 'formik';
 import classNames from 'classnames/bind';
 import * as Yup from 'yup';
@@ -27,9 +20,7 @@ function LoginScreen() {
   const validationSchema = Yup.object({
     email: Yup.string().email().required('Email is required!'),
 
-    password: Yup.string()
-      .required('Password is required!')
-      .min(4, 'Mật khẩu dài hơn 4 kí tự'),
+    password: Yup.string().required('Password is required!').min(4, 'Mật khẩu dài hơn 4 kí tự'),
   });
 
   const renderError = (message: any) => <p className={cx('error-message')}>{message}</p>;
@@ -62,12 +53,12 @@ function LoginScreen() {
                 <ErrorInput name="email" render={renderError} />
               </span>
               <span>
-                <Field id="input" name="password" placeholder="Password" />
+                <Field type="password" id="input" name="password" placeholder="Password" />
                 <ErrorInput name="password" render={renderError} />
               </span>
               <div className={cx('btn')}>
-                  <button className={cx('btn-login')}>Đăng nhập</button>
-                  <button className={cx('btn-register')}>Đăng ký</button>
+                <button className={cx('btn-login')}>Đăng nhập</button>
+                <button className={cx('btn-register')}>Đăng ký</button>
               </div>
             </div>
           </Form>

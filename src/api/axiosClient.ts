@@ -1,6 +1,4 @@
 import axios, { AxiosError, AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios';
-import firebase from 'firebase/compat/app';
-import { onAuthStateChanged } from 'firebase/auth';
 
 import { load } from '../utils/storage';
 import { DEFAULT_API } from '../utils/constants';

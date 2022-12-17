@@ -14,15 +14,21 @@ interface Props {
 const cx = classNames.bind(style);
 
 function DefaultLayout({ children }: Props) {
+  const Layout = {
+    colSlider: 5,
+    colContent: 19,
+  };
+
   const drawerCheck = useRef<RefModalPopup>(null);
+
   return (
     <>
       <div className={cx('wrapper')}>
         <Row>
-          <Col span={5}>
+          <Col span={Layout.colSlider}>
             <SliderScreen />
           </Col>
-          <Col span={19}>
+          <Col span={Layout.colContent}>
             <HeaderScreen drawerCheck={drawerCheck} />
           </Col>
         </Row>
