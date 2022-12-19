@@ -1,12 +1,5 @@
 import { useEffect, useState } from 'react';
 import 'firebase/compat/auth';
-import firebase from 'firebase/compat/app';
-import {
-  onAuthStateChanged,
-  signInWithEmailAndPassword,
-  createUserWithEmailAndPassword,
-  getAuth,
-} from 'firebase/auth';
 import { Formik, Field, Form, FormikHelpers } from 'formik';
 import classNames from 'classnames/bind';
 import * as Yup from 'yup';
@@ -17,39 +10,45 @@ import ErrorInput from '../../components/ErrorMessageInput';
 import styles from './Login.scss';
 import { Account } from '../../utils/Account';
 import { save } from '../../utils/storage';
+import { api } from '../../service';
+import { useNavigate } from 'react-router-dom';
+
 const cx = classNames.bind(styles);
+type UserInfo = {
+  username: string;
+  password: string;
+};
 
 function LoginScreen() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [isSignedIn, setIsSignedIn] = useState(false); // Local signed-in state.
-
+  const navigation = useNavigate();
   const validationSchema = Yup.object({
-    email: Yup.string().email().required('Email is required!'),
-
-    password: Yup.string()
-      .required('Password is required!')
-      .min(4, 'Mật khẩu dài hơn 4 kí tự'),
+    username: Yup.string().required('Account is required!'),
+    password: Yup.string().required('Password is required!').min(4, 'Mật khẩu dài hơn 4 kí tự'),
   });
 
   const renderError = (message: any) => <p className={cx('error-message')}>{message}</p>;
+
+  async function handleSignIn(values: UserInfo) {
+    const response = await api.signIn(values);
+    if (response) {
+      const { data } = response;
+      save('user', data);
+      navigation('/');
+    } else {
+      console.log('Login failed');
+    }
+  }
 
   return (
     <>
       <div className={cx('wrapper-login')}>
         <Formik
           initialValues={{
-            email: '',
+            username: '',
             password: '',
           }}
           validationSchema={validationSchema}
-          onSubmit={(values: Account, { setSubmitting }: FormikHelpers<Account>) => {
-            alert(JSON.stringify(values, null, 2));
-            console.log('values', values);
-            setEmail(values.email);
-            setPassword(values.password);
-            setSubmitting(false);
-          }}
+          onSubmit={handleSignIn}
         >
           <Form>
             <div className={cx('from', 'dfc')}>
@@ -58,16 +57,18 @@ function LoginScreen() {
                 <img src={images.textOnebox} width={140} />
               </div>
               <span>
-                <Field id="input" name="email" placeholder="Email" />
-                <ErrorInput name="email" render={renderError} />
+                <Field id="input" name="username" placeholder="useName" />
+                <ErrorInput name="username" render={renderError} />
               </span>
               <span>
-                <Field id="input" name="password" placeholder="Password" />
+                <Field type="password" id="input" name="password" placeholder="Password" />
                 <ErrorInput name="password" render={renderError} />
               </span>
               <div className={cx('btn')}>
-                  <button className={cx('btn-login')}>Đăng nhập</button>
-                  <button className={cx('btn-register')}>Đăng ký</button>
+                <button type="submit" className={cx('btn-login')}>
+                  Đăng nhập
+                </button>
+                <button className={cx('btn-register')}>Đăng ký</button>
               </div>
             </div>
           </Form>

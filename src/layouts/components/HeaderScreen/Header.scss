@@ -1,18 +1,56 @@
 .container{
   width: 100%;
-  height: 100%;
   padding: 0 30px;
   margin: 0;
   box-sizing: border-box;
 }
 .wrapper-header {
+  padding: 25px 30px;
   display: flex;
-  align-items: center;
   justify-content: space-between;
-  margin-top: 40px;
+  align-items: center;
 
-  .header {
-    font-family: 'Be Vietnam Pro';
+  .logo {
+    display: flex;
+    align-items: flex-start;
+    justify-content: start;
+    margin-bottom: 20px;
+    flex-direction: column;
+
+    .logo-img {
+      margin-left: -10px;
+    }
+  }
+
+  .btn-group {
+    .btn-export-report {
+      font-size: 16px;
+      font-weight: 600;
+      padding: 8px 16px;
+      background-color: transparent;
+      border: 2px solid #000;
+      margin-right: 30px;
+      border-radius: 3px;
+
+      &:active {
+        background: #373B44;
+        color: #fff;
+      }
+    }
+
+    .btn-import-excel {
+      font-size: 16px;
+      font-weight: 600;
+      background-color: var(--antd-color);
+      padding: 10px 16px;
+      color: var(--white-color);
+      border-radius: 3px;
+
+      &:active {
+        background: #373B44;
+        color: #fff;
+      }
+    }
   }
   .wrapper-export {
     display: flex;

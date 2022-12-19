@@ -5,7 +5,7 @@ import { images } from '../../../assets';
 
 const cx = classNames.bind(styles);
 
-export default function SliderScreen() {
+export default function SliderScreen({drawerCheck}) {
   return (
     <>
       <div className={cx('wrapper-sidebar')}>

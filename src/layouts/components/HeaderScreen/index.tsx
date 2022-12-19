@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { useState } from 'react';
 import classNames from 'classnames';
 import styles from './Header.scss';
 import type { ColumnsType } from 'antd/es/table';
@@ -40,33 +40,12 @@ const data: DataType[] = [
     intendTime: '08:23:29 ',
   },
 ];
+import { images } from '../../../assets';
+import SearchInput from './components/SearchInput';
 
 const cx = classNames.bind(styles);
 
 function HeaderScreen({ drawerCheck }) {
-  const footerRender = () => {
-    return (
-      <Row justify={'space-between'} wrap={false}>
-        <Col span={6}>
-          <Input />
-        </Col>
-        <Col span={6}>
-          <Input />
-        </Col>
-        <Col span={6}>
-          <Input />
-        </Col>
-        <Row justify={'space-between'}>
-          <Col span={12}>
-            <Button type="primary">OK</Button>
-          </Col>
-          <Col span={12}>
-            <Button danger>CANCEL</Button>
-          </Col>
-        </Row>
-      </Row>
-    );
-  };
   const expandedRowRender = (e: any) => {
     const columns: any = [
       {
@@ -120,7 +99,6 @@ function HeaderScreen({ drawerCheck }) {
             showHeader={false}
             columns={columns}
             dataSource={e?.subStaskList}
-            footer={footerRender}
             pagination={false}
           />
         )}
@@ -169,31 +147,30 @@ function HeaderScreen({ drawerCheck }) {
           : STATUS_WORD.PLAY_WORD,
     });
   };
+
   return (
-    <div className={cx('container')}>
+    <>
       <div className={cx('wrapper-header')}>
-        <h1 className={cx('header')}>Danh sách công việc</h1>
-        <div className={cx('wrapper-export')}>
-          <Button ghost danger>
-            Xuất báo cáo
-          </Button>
-          <Button type="primary">Thêm bằng excel</Button>
+        <div className={cx('logo')}>
+          <img src={images.textOnebox} width={230} className={cx('logo-img')} />
+          <SearchInput />
+        </div>
+        <div className={cx('btn-group')}>
+          <button className={cx('btn-export-report')}>Xuất báo cáo</button>
+          <button className={cx('btn-import-excel')}>Thêm báo cáo</button>
         </div>
       </div>
-      <div className={cx('wrapper-search')}>
-        <Input className="input" />
-        <Button className="btn-search">Tìm kiếm</Button>
-        <Button className="btn-search">Lọc nâng cao</Button>
+      <div className={cx('container')}>
+        <div className={cx('work-list')}>
+          <Table
+            columns={columns}
+            dataSource={data}
+            expandable={{ expandedRowRender, defaultExpandedRowKeys: ['0'] }}
+            footer={() => <Button>+ Thêm Task</Button>}
+          />
+        </div>
       </div>
-      <div className={cx('work-list')}>
-        <Table
-          columns={columns}
-          dataSource={data}
-          expandable={{ expandedRowRender, defaultExpandedRowKeys: ['0'] }}
-          footer={() => <Button>+ Thêm Task</Button>}
-        />
-      </div>
-    </div>
+    </>
   );
 }
 
