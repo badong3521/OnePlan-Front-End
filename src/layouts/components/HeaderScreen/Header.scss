@@ -17,6 +17,9 @@
   }
 
   .btn-group {
+    align-self: flex-start;
+    margin-top: 10px;
+
     .btn-export-report {
       font-size: 16px;
       font-weight: 600;
