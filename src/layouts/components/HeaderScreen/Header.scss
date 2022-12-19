@@ -1,3 +1,9 @@
+.container{
+  width: 100%;
+  padding: 0 30px;
+  margin: 0;
+  box-sizing: border-box;
+}
 .wrapper-header {
   padding: 25px 30px;
   display: flex;
@@ -49,4 +55,29 @@
       }
     }
   }
+  .wrapper-export {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 25%;
+  }
+}
+.wrapper-search {
+  display: flex;
+  margin-top: 20px;
+  .input {
+    width: 300px;
+  }
+  .btn-search{
+    margin-left: 16px;
+  }
+}
+.work-list{
+  margin-top: 24px;
+}
+.btn-add-task{
+  padding: 8px;
+}
+.btn-add-sub-task{
+  margin-top: 15px;
 }
