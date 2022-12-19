@@ -26,7 +26,7 @@ function DefaultLayout({ children }: Props) {
       <div className={cx('wrapper')}>
         <Row>
           <Col span={Layout.colSlider}>
-            <SliderScreen />
+            <SliderScreen drawerCheck={drawerCheck} />
           </Col>
           <Col span={Layout.colContent}>
             <HeaderScreen drawerCheck={drawerCheck} />

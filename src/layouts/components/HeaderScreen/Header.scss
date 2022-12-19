@@ -6,9 +6,14 @@
 
   .logo {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: start;
     margin-bottom: 20px;
+    flex-direction: column;
+
+    .logo-img {
+      margin-left: -10px;
+    }
   }
 
   .btn-group {

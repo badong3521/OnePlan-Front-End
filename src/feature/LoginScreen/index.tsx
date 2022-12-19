@@ -10,20 +10,25 @@ import ErrorInput from '../../components/ErrorMessageInput';
 import styles from './Login.scss';
 import { Account } from '../../utils/Account';
 import { save } from '../../utils/storage';
+import { api } from '../../service';
+
 const cx = classNames.bind(styles);
 
 function LoginScreen() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [infoUser, setInfoUser] = useState({});
   const [isSignedIn, setIsSignedIn] = useState(false); // Local signed-in state.
 
   const validationSchema = Yup.object({
-    email: Yup.string().email().required('Email is required!'),
-
+    email: Yup.string().required('Account is required!'),
     password: Yup.string().required('Password is required!').min(4, 'Mật khẩu dài hơn 4 kí tự'),
   });
 
   const renderError = (message: any) => <p className={cx('error-message')}>{message}</p>;
+
+  async function handleSignIn() {
+    const user = await api.signIn(infoUser);
+    console.log('USER', user);
+  }
 
   return (
     <>
@@ -35,10 +40,8 @@ function LoginScreen() {
           }}
           validationSchema={validationSchema}
           onSubmit={(values: Account, { setSubmitting }: FormikHelpers<Account>) => {
-            alert(JSON.stringify(values, null, 2));
-            console.log('values', values);
-            setEmail(values.email);
-            setPassword(values.password);
+            // alert(JSON.stringify(values, null, 2));
+            setInfoUser(values);
             setSubmitting(false);
           }}
         >
@@ -57,7 +60,9 @@ function LoginScreen() {
                 <ErrorInput name="password" render={renderError} />
               </span>
               <div className={cx('btn')}>
-                <button className={cx('btn-login')}>Đăng nhập</button>
+                <button type="submit" onSubmit={handleSignIn} className={cx('btn-login')}>
+                  Đăng nhập
+                </button>
                 <button className={cx('btn-register')}>Đăng ký</button>
               </div>
             </div>
