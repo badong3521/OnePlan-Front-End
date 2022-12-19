@@ -1,0 +1,41 @@
+.wrapper-drawer {
+
+    .title-header {
+        font-weight: 600;
+        font-size: 24px;
+        display: inline-block;
+        white-space: nowrap;
+        overflow: hidden !important;
+        text-overflow: ellipsis;
+        width: 400px;
+        border-bottom: 2px solid var(--gray-color);
+        padding-bottom: 10px;
+    }
+
+    .container-drawer {
+        .group-text {
+            .group-left {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+
+                .deadline-text {
+                    font-weight: 400;
+                    font-size: 16;
+                }
+            }
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+
+
+            .deadline {
+                font-weight: 600;
+                font-size: 16;
+                flex-basis: 50%;
+            }
+        }
+    }
+}
