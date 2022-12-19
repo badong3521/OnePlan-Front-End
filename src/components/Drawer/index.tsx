@@ -13,10 +13,6 @@ export interface RefModalPopup {
 const DrawerScreen: ForwardRefRenderFunction<RefModalPopup> = ({}, ref) => {
   const [open, setOpen] = useState<boolean>(false);
 
-  //   const show = () => {
-  //     setOpen(true);
-  //   };
-
   const onClose = () => {
     setOpen(false);
   };
@@ -32,9 +28,7 @@ const DrawerScreen: ForwardRefRenderFunction<RefModalPopup> = ({}, ref) => {
   return (
     <>
       <Drawer title="Basic Drawer" placement="right" onClose={onClose} open={open}>
-        <p>Some contents...</p>
-        <p>Some contents...</p>
-        <p>Some contents...</p>
+        <div className={cx('wrapper-drawer')}></div>
       </Drawer>
     </>
   );

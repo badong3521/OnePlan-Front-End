@@ -20,14 +20,14 @@ function HeaderScreen({ drawerCheck }) {
           <button className={cx('btn-import-excel')}>Thêm báo cáo</button>
         </div>
 
-        {/* <button
+      </div>
+        <button
           onClick={() => {
             drawerCheck.current?.show();
           }}
         >
           OPEN DRAWER
-        </button> */}
-      </div>
+        </button>
     </>
   );
 }

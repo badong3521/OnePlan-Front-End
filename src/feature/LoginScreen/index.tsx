@@ -11,23 +11,32 @@ import styles from './Login.scss';
 import { Account } from '../../utils/Account';
 import { save } from '../../utils/storage';
 import { api } from '../../service';
+import { useNavigate } from 'react-router-dom';
 
 const cx = classNames.bind(styles);
+type UserInfo = {
+  username: string;
+  password: string;
+};
 
 function LoginScreen() {
-  const [infoUser, setInfoUser] = useState({});
-  const [isSignedIn, setIsSignedIn] = useState(false); // Local signed-in state.
-
+  const navigation = useNavigate();
   const validationSchema = Yup.object({
-    email: Yup.string().required('Account is required!'),
+    username: Yup.string().required('Account is required!'),
     password: Yup.string().required('Password is required!').min(4, 'Mật khẩu dài hơn 4 kí tự'),
   });
 
   const renderError = (message: any) => <p className={cx('error-message')}>{message}</p>;
 
-  async function handleSignIn() {
-    const user = await api.signIn(infoUser);
-    console.log('USER', user);
+  async function handleSignIn(values: UserInfo) {
+    const response = await api.signIn(values);
+    if (response) {
+      const { data } = response;
+      save('user', data);
+      navigation('/');
+    } else {
+      console.log('Login failed');
+    }
   }
 
   return (
@@ -35,15 +44,11 @@ function LoginScreen() {
       <div className={cx('wrapper-login')}>
         <Formik
           initialValues={{
-            email: '',
+            username: '',
             password: '',
           }}
           validationSchema={validationSchema}
-          onSubmit={(values: Account, { setSubmitting }: FormikHelpers<Account>) => {
-            // alert(JSON.stringify(values, null, 2));
-            setInfoUser(values);
-            setSubmitting(false);
-          }}
+          onSubmit={handleSignIn}
         >
           <Form>
             <div className={cx('from', 'dfc')}>
@@ -52,15 +57,15 @@ function LoginScreen() {
                 <img src={images.textOnebox} width={140} />
               </div>
               <span>
-                <Field id="input" name="email" placeholder="Email" />
-                <ErrorInput name="email" render={renderError} />
+                <Field id="input" name="username" placeholder="useName" />
+                <ErrorInput name="username" render={renderError} />
               </span>
               <span>
                 <Field type="password" id="input" name="password" placeholder="Password" />
                 <ErrorInput name="password" render={renderError} />
               </span>
               <div className={cx('btn')}>
-                <button type="submit" onSubmit={handleSignIn} className={cx('btn-login')}>
+                <button type="submit" className={cx('btn-login')}>
                   Đăng nhập
                 </button>
                 <button className={cx('btn-register')}>Đăng ký</button>
