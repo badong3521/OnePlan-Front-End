@@ -3,12 +3,14 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  background-color: var(--white-color);
+  margin: 25px 30px;
+  border-radius: 3px;
 
   .logo {
     display: flex;
     align-items: flex-start;
     justify-content: start;
-    margin-bottom: 20px;
     flex-direction: column;
 
     .logo-img {

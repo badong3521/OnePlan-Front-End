@@ -31,6 +31,9 @@ const publicRoutes: Page[] = [
   { path: '/login', component: LoginScreen, layout: false },
 ];
 
-const privateRoutes: never[] = [];
+const privateRoutes: Page[] = [
+  { path: '*', component: NoThingsRoute, layout: false },
+  { path: '/', component: ScreenMain, layout: true },
+];
 
 export { publicRoutes, privateRoutes };

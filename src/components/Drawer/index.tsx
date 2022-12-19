@@ -5,6 +5,9 @@ import { Button, Drawer } from 'antd';
 import { images } from '../../assets/index';
 import { FaRegClock } from 'react-icons/fa';
 import { FiCalendar } from 'react-icons/fi';
+import { Input } from 'antd';
+
+const { TextArea } = Input;
 
 const cx = classNames.bind(styles);
 
@@ -36,18 +39,32 @@ const DrawerScreen: ForwardRefRenderFunction<RefModalPopup> = ({}, ref) => {
           <div className={cx('container-drawer')}>
             <div className={cx('group-text')}>
               <span className={cx('group-left')}>
-                <FiCalendar className={cx('ic-deadline')} style={{ padding: 10 }} size="20" />
+                <FiCalendar
+                  color="#555555"
+                  className={cx('ic-deadline')}
+                  style={{ margin: 10 }}
+                  size="20"
+                />
                 <span className={cx('deadline-text')}>Hạn cuối</span>
               </span>
               <span className={cx('deadline')}>12/12/2022</span>
             </div>
             <div className={cx('group-text')}>
               <span className={cx('group-left')}>
-                <FiCalendar className={cx('ic-deadline')} style={{ padding: 10 }} size="20" />
-                <span className={cx('deadline-text')}>Hạn cuối</span>
+                <FaRegClock
+                  color="#555555"
+                  className={cx('ic-deadline')}
+                  style={{ margin: 10 }}
+                  size="20"
+                />
+                <span className={cx('deadline-text')}>Thời gian thực hiện</span>
               </span>
-              <span className={cx('deadline')}>12/12/2022</span>
+              <span className={cx('deadline')}>10h</span>
             </div>
+          </div>
+          <div className={cx('details-work-container')}>
+            <div className={cx('details-title')}>Mô tả chi tiết công việc</div>
+          <div className={cx('input-work')}><TextArea rows={4} /></div>
           </div>
         </div>
       </Drawer>

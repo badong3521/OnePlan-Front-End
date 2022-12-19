@@ -32,8 +32,11 @@ function LoginScreen() {
     const response = await api.signIn(values);
     if (response) {
       const { data } = response;
-      save('user', data);
-      navigation('/');
+      if (data.user_id === "1") {
+        console.log('DATA', data);
+        save('user', data);
+        navigation('/');
+      }
     } else {
       console.log('Login failed');
     }

@@ -162,7 +162,8 @@ function HeaderScreen({ drawerCheck }) {
           <button className={cx('btn-import-excel')}>Thêm báo cáo</button>
         </div>
       </div>
-      <div className={cx('container')}>
+        <button onClick={() => drawerCheck?.current?.show()}>Drawer Open</button>
+      {/* <div className={cx('container')}>
         <div className={cx('work-list')}>
           <Table
             columns={columns}
@@ -172,7 +173,7 @@ function HeaderScreen({ drawerCheck }) {
           />
         </div>
       </div>
-      <ModalAddTask visible={visible} onCancel={() => setVisible(false)} />
+      <ModalAddTask visible={visible} onCancel={() => setVisible(false)} /> */}
     </>
   );
 }
