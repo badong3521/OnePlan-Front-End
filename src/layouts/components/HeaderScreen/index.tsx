@@ -6,6 +6,7 @@ import { PlayCircleOutlined, PauseCircleOutlined } from '@ant-design/icons';
 // import Drawer, { RefModalPopup } from '../../../../src/components/Drawer';
 import { STATUS_WORD } from './type';
 import { Button, Col, Drawer, Input, Table, Row } from 'antd';
+import ModalAddTask from './components/ModalAddTask';
 interface DataType {
   key: React.ReactNode;
   name: string;
@@ -131,7 +132,7 @@ function HeaderScreen({ drawerCheck }) {
       width: '20%',
     },
   ];
-
+  const [visible, setVisible] = useState<boolean>(true);
   const [dataList, setDataList] = useState<any>(data);
   const [statusWord, setStatusWord] = useState<any>();
 
@@ -166,10 +167,11 @@ function HeaderScreen({ drawerCheck }) {
             columns={columns}
             dataSource={data}
             expandable={{ expandedRowRender, defaultExpandedRowKeys: ['0'] }}
-            footer={() => <Button>+ Thêm Task</Button>}
+            footer={() => <Button onClick={() => setVisible(true)}>+ Thêm Task</Button>}
           />
         </div>
       </div>
+      <ModalAddTask visible={visible} onCancel={() => setVisible(false)} />
     </>
   );
 }
