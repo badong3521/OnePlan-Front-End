@@ -47,7 +47,6 @@ const data: DataType[] = [
 ];
 const cx = classNames.bind(styles);
 const ContentScreen = ({ drawerCheck }: any) => {
-  const clockRef: any = useRef();
   const [idSubTask, setIdSubTask] = useState();
   const [visible, setVisible] = useState<boolean>(false);
   const [title, setTitle] = useState<TITLE_MODAL>(TITLE_MODAL.ADD_TASK);
@@ -196,11 +195,6 @@ const ContentScreen = ({ drawerCheck }: any) => {
           ? STATUS_WORD.PAUSE_WORD
           : STATUS_WORD.PLAY_WORD,
     });
-    if (statusWord.status === STATUS_WORD.PAUSE_WORD) {
-      clockRef.current.start();
-    } else {
-      clockRef.current.pause();
-    }
   };
   const onSubmit = (values: any, titleModal: any) => {
     const formatDate = moment(values.dealine).format('DD-MM-YYYY');
