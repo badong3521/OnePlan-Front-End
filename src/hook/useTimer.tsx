@@ -2,39 +2,40 @@
 import { useState, useRef } from 'react';
 
 const useTimer = (initialState = 0) => {
-  const [timer, setTimer] = useState<any>(initialState)
-  const [isActive, setIsActive] = useState<any>(false)
-  const [isPaused, setIsPaused] = useState<any>(false)
-  const countRef = useRef<any>(null)
+  const [timer, setTimer] = useState<any>(initialState);
+  const [isActive, setIsActive] = useState<any>(false);
+  const [isPaused, setIsPaused] = useState<any>(false);
+  const countRef = useRef<any>(null);
+  console.log('timer', timer);
 
   const handleStart = () => {
-    setIsActive(true)
-    setIsPaused(true)
+    setIsActive(true);
+    setIsPaused(true);
     countRef.current = setInterval(() => {
-      setTimer((timer) => timer + 1)
-    }, 1000)
-  }
+      setTimer((timer) => timer + 1);
+    }, 1000);
+  };
 
   const handlePause = () => {
-    clearInterval(countRef.current)
-    setIsPaused(false)
-  }
+    clearInterval(countRef.current);
+    setIsPaused(false);
+  };
 
   const handleResume = () => {
-    setIsPaused(true)
+    setIsPaused(true);
     countRef.current = setInterval(() => {
-      setTimer((timer) => timer + 1)
-    }, 1000)
-  }
+      setTimer((timer) => timer + 1);
+    }, 1000);
+  };
 
   const handleReset = () => {
-    clearInterval(countRef.current)
-    setIsActive(false)
-    setIsPaused(false)
-    setTimer(0)
-  }
+    clearInterval(countRef.current);
+    setIsActive(false);
+    setIsPaused(false);
+    setTimer(0);
+  };
 
-  return { timer, isActive, isPaused, handleStart, handlePause, handleResume, handleReset }
-}
+  return { timer, isActive, isPaused, handleStart, handlePause, handleResume, handleReset };
+};
 
-export default useTimer
+export default useTimer;

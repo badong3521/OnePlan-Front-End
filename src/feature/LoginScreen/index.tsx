@@ -14,6 +14,7 @@ import { api } from '../../service';
 import { useNavigate } from 'react-router-dom';
 
 const cx = classNames.bind(styles);
+
 type UserInfo = {
   username: string;
   password: string;
@@ -32,7 +33,7 @@ function LoginScreen() {
     const response = await api.signIn(values);
     if (response) {
       const { data } = response;
-      if (data.user_id === "1") {
+      if (data.user_id === '1') {
         console.log('DATA', data);
         save('user', data);
         navigation('/');
