@@ -8,15 +8,8 @@ const cx = classNames.bind(styles);
 
 const StopWatch = () => {
 
-  const {
-    timer,
-    isActive,
-    isPaused,
-    handleStart,
-    handlePause,
-    handleResume,
-    handleReset,
-  } = useTimer(0);
+  const { timer, isActive, isPaused, handleStart, handlePause, handleResume, handleReset } =
+    useTimer(0);
 
   return (
     <div className={cx('wrapper-stopwatch')}>

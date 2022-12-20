@@ -1,6 +1,8 @@
-// .container {
-//   padding :30px
-// }
+.container {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
 
 .wrapper-header {
   padding: 25px 30px;
@@ -9,7 +11,7 @@
   align-items: center;
   background-color: var(--white-color);
   margin: 25px 30px;
-  border-radius: 3px;
+  border-radius: 8px;
 
   .logo {
     display: flex;
@@ -36,7 +38,7 @@
       border-radius: 3px;
 
       &:active {
-        background: #373B44;
+        background: #373b44;
         color: #fff;
       }
     }
@@ -50,9 +52,45 @@
       border-radius: 3px;
 
       &:active {
-        background: #373B44;
+        background: #373b44;
         color: #fff;
       }
     }
   }
+  .wrapper-export {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 25%;
+  }
+}
+.wrapper-search {
+  display: flex;
+  margin-top: 20px;
+  .input {
+    width: 300px;
+  }
+  .btn-search {
+    margin-left: 16px;
+  }
+}
+
+.wrapper-content{
+  padding: 0 30px;
+  background-color: var(--background-color);
+}
+
+.work-list {
+  margin-top: 24px;
+}
+.btn-add-task {
+  padding: 8px;
+}
+.btn-add-sub-task {
+  margin-top: 15px;
+}
+.content-btn-status{
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

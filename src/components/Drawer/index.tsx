@@ -1,8 +1,7 @@
 import { forwardRef, ForwardRefRenderFunction, useImperativeHandle, useState } from 'react';
 import classNames from 'classnames/bind';
 import styles from './drawer.scss';
-import { Button, Drawer } from 'antd';
-import { images } from '../../assets/index';
+import {  Drawer } from 'antd';
 import { FaRegClock } from 'react-icons/fa';
 import { FiCalendar } from 'react-icons/fi';
 import { Input } from 'antd';
@@ -13,11 +12,13 @@ const { TextArea } = Input;
 const cx = classNames.bind(styles);
 
 export interface RefModalPopup {
+  data: any;
   show: () => void;
   close: () => void;
 }
 
 const DrawerScreen: ForwardRefRenderFunction<RefModalPopup> = ({}, ref) => {
+  const [data, setData] = useState<any>();
   const [open, setOpen] = useState<boolean>(false);
 
   const onClose = () => {
@@ -25,6 +26,10 @@ const DrawerScreen: ForwardRefRenderFunction<RefModalPopup> = ({}, ref) => {
   };
 
   useImperativeHandle(ref, () => ({
+    data: (value: any) => {
+      console.log("value" , value)
+      setData(value);
+    },
     show: () => {
       setOpen(true);
     },
@@ -36,7 +41,7 @@ const DrawerScreen: ForwardRefRenderFunction<RefModalPopup> = ({}, ref) => {
     <>
       <Drawer placement="right" onClose={onClose} open={open} width={470} closable={false}>
         <div className={cx('wrapper-drawer')}>
-          <p className={cx('title-header')}>Thiết kế UX phần mềm quản lý công việc</p>
+          <p className={cx('title-header')}>{data?.name}</p>
           <div className={cx('container-drawer')}>
             <div className={cx('group-text')}>
               <span className={cx('group-left')}>
@@ -48,7 +53,7 @@ const DrawerScreen: ForwardRefRenderFunction<RefModalPopup> = ({}, ref) => {
                 />
                 <span className={cx('deadline-text')}>Hạn cuối</span>
               </span>
-              <span className={cx('deadline')}>12/12/2022</span>
+              <span className={cx('deadline')}>{data?.deadline}</span>
             </div>
             <div className={cx('group-text')}>
               <span className={cx('group-left')}>
@@ -60,13 +65,13 @@ const DrawerScreen: ForwardRefRenderFunction<RefModalPopup> = ({}, ref) => {
                 />
                 <span className={cx('deadline-text')}>Thời gian thực hiện</span>
               </span>
-              <span className={cx('deadline')}>10h</span>
+              <span className={cx('deadline')}>{data?.expected}h</span>
             </div>
           </div>
           <div className={cx('details-work-container')}>
             <div className={cx('details-title')}>Mô tả chi tiết công việc</div>
             <div className={cx('input-work')}>
-              <TextArea rows={4} />
+              <TextArea rows={4} autoSize={{ minRows: 4 }} />
             </div>
           </div>
           <div className={cx('details-work-container')}>

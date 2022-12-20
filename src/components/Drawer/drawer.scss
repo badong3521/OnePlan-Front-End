@@ -1,57 +1,55 @@
 .wrapper-drawer {
+  .title-header {
+    font-weight: 600;
+    font-size: 24px;
+    display: inline-block;
+    white-space: nowrap;
+    overflow: hidden !important;
+    text-overflow: ellipsis;
+    width: 400px;
+    border-bottom: 2px solid var(--gray-color);
+    padding-bottom: 10px;
+  }
 
-    .title-header {
+  .container-drawer {
+    margin-top: 30px;
+
+    .group-text {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      .group-left {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        .deadline-text {
+          font-weight: 400;
+          font-size: 16px;
+          color: var(--text-color);
+        }
+      }
+
+      .deadline {
         font-weight: 600;
-        font-size: 24px;
-        display: inline-block;
-        white-space: nowrap;
-        overflow: hidden !important;
-        text-overflow: ellipsis;
-        width: 400px;
-        border-bottom: 2px solid var(--gray-color);
-        padding-bottom: 10px;
+        font-size: 16px;
+        flex-basis: 40%;
+        color: var(--text-color);
+      }
     }
+  }
 
-    .container-drawer {
-        margin-top: 30px;
+  .details-work-container {
+    margin-top: 30px;
 
-        .group-text {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-
-            .group-left {
-                display: flex;
-                justify-content: center;
-                align-items: center;
-
-                .deadline-text {
-                    font-weight: 400;
-                    font-size: 16px;
-                    color: var(--text-color);
-
-                }
-            }
-
-            .deadline {
-                font-weight: 600;
-                font-size: 16px;
-                flex-basis: 40%;
-                color: var(--text-color);
-            }
-        }
+    .details-title {
+      font-weight: 600;
+      font-size: 16px;
+      color: var(--text-color);
     }
-
-    .details-work-container {
-        margin-top: 30px;
-
-        .details-title {
-            font-weight: 600;
-            font-size: 16px;
-            color : var(--text-color)
-        }
-        .input-work {
-            margin-top : 10px;
-        }
+    .input-work {
+      margin-top: 10px;
     }
+  }
 }
