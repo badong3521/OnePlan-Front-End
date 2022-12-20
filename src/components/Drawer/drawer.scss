@@ -1,71 +1,55 @@
 .wrapper-drawer {
-  .wrapper-dealine {
-    display: flex;
-    margin-bottom: 16px;
-    .dealine-label,
-    .dealine-content {
-      display: flex;
-      align-items: center;
-      flex: 1;
-      .text-label {
-        margin-left: 10px;
-      }
-      .text-content {
-        font-weight: 600;
-      }
-    }
+  .title-header {
+    font-weight: 600;
+    font-size: 24px;
+    display: inline-block;
+    white-space: nowrap;
+    overflow: hidden !important;
+    text-overflow: ellipsis;
+    width: 400px;
+    border-bottom: 2px solid var(--gray-color);
+    padding-bottom: 10px;
   }
-  .wrapper-describeDetail {
-    margin-bottom: 16px;
-    .describeDetail-content {
-      margin-top: 16px;
-    }
-  }
-  .wrapper-wordChild {
-    margin-bottom: 30px;
-    .header {
+
+  .container-drawer {
+    margin-top: 30px;
+
+    .group-text {
       display: flex;
       justify-content: space-between;
-      .btn-add {
-        cursor: pointer;
-      }
-    }
-    .wordChild-detail {
-      margin-top: 16px;
-      padding: 25px 16px;
-      background-color: rgba(128, 128, 128, 0.389);
-      .header-detail {
+      align-items: center;
+
+      .group-left {
         display: flex;
+        justify-content: center;
         align-items: center;
-        .text-header {
-          margin-left: 16px;
-        }
-      }
-      .content-detail {
-        display: flex;
-        align-items: center;
-        .wrapper-counter {
+
+        .deadline-text {
+          font-weight: 400;
           font-size: 16px;
-          .counter {
-            margin-bottom: 10px;
-          }
+          color: var(--text-color);
         }
+      }
+
+      .deadline {
+        font-weight: 600;
+        font-size: 16px;
+        flex-basis: 40%;
+        color: var(--text-color);
       }
     }
-    .wordChild-list {
-      .wrapper-wordChild-item {
-          margin-top: 16px;
-        display: flex;
-        .wordChild-item{
-            display: flex;
-            flex: 1;
-            align-items: center;
-            justify-content: space-between;
-            margin-left: 16px;
-            border-bottom: 1px solid rgba(128, 128, 128, 0.475);
-            padding-bottom: 4px;
-        }
-      }
+  }
+
+  .details-work-container {
+    margin-top: 30px;
+
+    .details-title {
+      font-weight: 600;
+      font-size: 16px;
+      color: var(--text-color);
+    }
+    .input-work {
+      margin-top: 10px;
     }
   }
 }

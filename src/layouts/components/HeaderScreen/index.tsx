@@ -10,7 +10,7 @@ const cx = classNames.bind(styles);
 
 function HeaderScreen({ drawerCheck }) {
   return (
-    <>
+    <div className="container">
       <div className={cx('wrapper-header')}>
         <div className={cx('logo')}>
           <img src={images.textOnebox} width={230} className={cx('logo-img')} />
@@ -21,8 +21,10 @@ function HeaderScreen({ drawerCheck }) {
           <button className={cx('btn-import-excel')}>Thêm báo cáo</button>
         </div>
       </div>
-      <ContentScreen drawerCheck={drawerCheck} />
-    </>
+      <div className={cx('wrapper-content')}>
+        <ContentScreen drawerCheck={drawerCheck} />
+      </div>
+    </div>
   );
 }
 

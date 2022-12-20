@@ -1,0 +1,36 @@
+.wrapper-stopwatch {
+
+    .stopwatch-card {
+        border: 3px solid var(--text-color);
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+        border-radius: 6px;
+        padding: 10px 30px;
+
+        .timer {
+            color: var(--text-color);
+            font-weight: 700;
+            font-size: 50px;
+
+        }
+
+        .buttons {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            margin:0 10px;
+        }
+
+        .btn-clock {
+            padding: 6px 10px;
+            background-color: var(--text-color);
+            font-weight: bold;
+            font-size: 16px;
+            width: 40%;
+            border-radius: 3px;
+            color : var(--white-color);
+        }
+    }
+}

@@ -25,14 +25,14 @@ const data: DataType[] = [
     name: 'Thiết kế UX phần mềm quản lý công việc',
     dealine: '12/12/2022',
     expected: '8',
-    intendTime: '08:23:29 ',
+    intendTime: '---',
     subStaskList: [
       {
         key: 11,
         name: 'Nghiên cứu và phân tích user',
         dealine: '12/12/2022',
         expected: '8',
-        intendTime: '08:23:29 ',
+        intendTime: '---',
       },
     ],
   },
@@ -41,7 +41,7 @@ const data: DataType[] = [
     name: 'Thiết kế UX phần mềm quản lý công việc sdsd',
     dealine: '12/12/2022',
     expected: '8',
-    intendTime: '10:10:10',
+    intendTime: '---',
     subStaskList: [],
   },
 ];
@@ -123,7 +123,7 @@ const ContentScreen = ({ drawerCheck }: any) => {
     ];
     return (
       <div>
-        {e?.subStaskList && (
+        {e?.subStaskList?.length > 0 && (
           <Table
             showHeader={false}
             columns={columns}

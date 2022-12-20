@@ -1,20 +1,22 @@
 .container {
-  width: 100%;
-  padding: 0 30px;
-  margin: 0;
   box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
+
 .wrapper-header {
   padding: 25px 30px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  background-color: var(--white-color);
+  margin: 25px 30px;
+  border-radius: 3px;
 
   .logo {
     display: flex;
     align-items: flex-start;
     justify-content: start;
-    margin-bottom: 20px;
     flex-direction: column;
 
     .logo-img {
@@ -23,6 +25,9 @@
   }
 
   .btn-group {
+    align-self: flex-start;
+    margin-top: 10px;
+
     .btn-export-report {
       font-size: 16px;
       font-weight: 600;
@@ -69,6 +74,11 @@
     margin-left: 16px;
   }
 }
+
+.wrapper-content{
+  padding: 0 30px;
+}
+
 .work-list {
   margin-top: 24px;
 }
