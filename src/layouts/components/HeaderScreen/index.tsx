@@ -6,7 +6,7 @@ import { PlayCircleOutlined, PauseCircleOutlined } from '@ant-design/icons';
 import { STATUS_WORK } from '../../../utils/StatusWork';
 import { Button, Col, Drawer, Input, Table, Row } from 'antd';
 import ModalAddTask from './components/ModalAddTask';
-import StopWatch from '../../../components/StopWatch';
+// import StopWatch from '../../../components/StopWatch';
 interface DataType {
   key: React.ReactNode;
   name: string;
@@ -164,8 +164,8 @@ function HeaderScreen({ drawerCheck }) {
         </div>
       </div>
       <button onClick={() => drawerCheck?.current?.show()}>Drawer Open</button>
-      <StopWatch />
-      {/* <div className={cx('container')}>
+      {/* <StopWatch /> */}
+      <div className={cx('container')}>
         <div className={cx('work-list')}>
           <Table
             columns={columns}
@@ -175,7 +175,7 @@ function HeaderScreen({ drawerCheck }) {
           />
         </div>
       </div>
-      <ModalAddTask visible={visible} onCancel={() => setVisible(false)} /> */}
+      {/* <ModalAddTask visible={visible} onCancel={() => setVisible(false)} /> */}
     </>
   );
 }

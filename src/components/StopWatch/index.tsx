@@ -1,10 +1,14 @@
 /* eslint-disable @typescript-eslint/no-shadow */
-import React, { useState, useRef } from 'react';
-import { FaRegClock } from 'react-icons/fa';
-import useTimer from '../../utils/hook/useTimer';
+// import { FaRegClock } from 'react-icons/fa';
+import useTimer from '../../hook/useTimer';
+import { formatTime } from '../../hook/formatTime';
+import styles from './StopWatch.scss';
+import classNames from 'classnames/bind';
+
+const cx = classNames.bind(styles);
 
 const StopWatch = () => {
-  const increment = useRef<any>(null);
+  //   const increment = useRef<any>(null);
 
   const {
     timer,
@@ -16,29 +20,25 @@ const StopWatch = () => {
     handleReset,
   } = useTimer(0);
 
-  const formatTime = () => {
-    const getSeconds = `0${timer % 60}`.slice(-2);
-    const minutes: any = `${Math.floor(timer / 60)}`;
-    const getMinutes = `0${minutes % 60}`.slice(-2);
-    const getHours = `0${Math.floor(timer / 3600)}`.slice(-2);
-
-    return `${getHours} : ${getMinutes} : ${getSeconds}`;
-  };
-
   return (
-    <div className="app">
-      <h3>React Stopwatch {<FaRegClock />}</h3>
-      <div className="stopwatch-card">
-        <p>{formatTime()}</p>
-        <div className="buttons">
+    <div className={cx('wrapper-stopwatch')}>
+      <div className={cx('stopwatch-card')}>
+        <p className={cx('timer')}>{formatTime(timer)}</p>
+        <div className={cx('buttons')}>
           {!isActive && !isPaused ? (
-            <button onClick={handleStart}>Start</button>
+            <button className={cx('btn-clock')} onClick={handleStart}>
+              Bắt đầu
+            </button>
           ) : isPaused ? (
-            <button onClick={handlePause}>Pause</button>
+            <button className={cx('btn-clock')} onClick={handlePause}>
+              Dừng
+            </button>
           ) : (
-            <button onClick={handleResume}>Resume</button>
+            <button className={cx('btn-clock')} onClick={handleResume}>
+              Tiếp tục
+            </button>
           )}
-          <button onClick={handleReset} disabled={!isActive}>
+          <button className={cx('btn-clock')} onClick={handleReset} disabled={!isActive}>
             Reset
           </button>
         </div>

@@ -6,6 +6,7 @@ import { images } from '../../assets/index';
 import { FaRegClock } from 'react-icons/fa';
 import { FiCalendar } from 'react-icons/fi';
 import { Input } from 'antd';
+import StopWatch from '../StopWatch';
 
 const { TextArea } = Input;
 
@@ -64,7 +65,15 @@ const DrawerScreen: ForwardRefRenderFunction<RefModalPopup> = ({}, ref) => {
           </div>
           <div className={cx('details-work-container')}>
             <div className={cx('details-title')}>Mô tả chi tiết công việc</div>
-          <div className={cx('input-work')}><TextArea rows={4} /></div>
+            <div className={cx('input-work')}>
+              <TextArea rows={4} />
+            </div>
+          </div>
+          <div className={cx('details-work-container')}>
+            <div className={cx('details-title')}>Thời gian làm việc</div>
+            <div className={cx('input-work')}>
+              <StopWatch />
+            </div>
           </div>
         </div>
       </Drawer>
