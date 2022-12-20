@@ -11,7 +11,7 @@
   align-items: center;
   background-color: var(--white-color);
   margin: 25px 30px;
-  border-radius: 3px;
+  border-radius: 8px;
 
   .logo {
     display: flex;
@@ -77,6 +77,7 @@
 
 .wrapper-content{
   padding: 0 30px;
+  background-color: var(--background-color);
 }
 
 .work-list {

@@ -5,8 +5,8 @@ const useTimer = (initialState = 0) => {
   const [timer, setTimer] = useState<any>(initialState);
   const [isActive, setIsActive] = useState<any>(false);
   const [isPaused, setIsPaused] = useState<any>(false);
-  const [isDone, setIsDone] = useState<any>(false);
   const countRef = useRef<any>(null);
+  console.log('timer', timer);
 
   const handleStart = () => {
     setIsActive(true);
@@ -28,32 +28,14 @@ const useTimer = (initialState = 0) => {
     }, 1000);
   };
 
-  const handelDone = () => {
-    clearInterval(countRef.current);
-    setIsActive(false);
-    setIsPaused(false);
-    setTimer(timer);
-    setIsDone(true);
-  };
-
   const handleReset = () => {
     clearInterval(countRef.current);
     setIsActive(false);
-    setIsPaused(true);
+    setIsPaused(false);
     setTimer(0);
   };
 
-  return {
-    timer,
-    isActive,
-    isPaused,
-    isDone,
-    handleStart,
-    handlePause,
-    handleResume,
-    handleReset,
-    handelDone,
-  };
+  return { timer, isActive, isPaused, handleStart, handlePause, handleResume, handleReset };
 };
 
 export default useTimer;

@@ -1,7 +1,7 @@
 import { forwardRef, ForwardRefRenderFunction, useImperativeHandle, useState } from 'react';
 import classNames from 'classnames/bind';
 import styles from './drawer.scss';
-import { Button, Drawer } from 'antd';
+import {  Drawer } from 'antd';
 import { FaRegClock } from 'react-icons/fa';
 import { FiCalendar } from 'react-icons/fi';
 import { Input } from 'antd';
@@ -27,6 +27,7 @@ const DrawerScreen: ForwardRefRenderFunction<RefModalPopup> = ({}, ref) => {
 
   useImperativeHandle(ref, () => ({
     data: (value: any) => {
+      console.log("value" , value)
       setData(value);
     },
     show: () => {
@@ -52,7 +53,7 @@ const DrawerScreen: ForwardRefRenderFunction<RefModalPopup> = ({}, ref) => {
                 />
                 <span className={cx('deadline-text')}>Hạn cuối</span>
               </span>
-              <span className={cx('deadline')}>{data?.dealine}</span>
+              <span className={cx('deadline')}>{data?.deadline}</span>
             </div>
             <div className={cx('group-text')}>
               <span className={cx('group-left')}>

@@ -1,5 +1,4 @@
 /* eslint-disable @typescript-eslint/no-shadow */
-// import { FaRegClock } from 'react-icons/fa';
 import useTimer from '../../hook/useTimer';
 import { formatTime } from '../../hook/formatTime';
 import styles from './StopWatch.scss';
@@ -8,7 +7,6 @@ import classNames from 'classnames/bind';
 const cx = classNames.bind(styles);
 
 const StopWatch = () => {
-  //   const increment = useRef<any>(null);
 
   const { timer, isActive, isPaused, handleStart, handlePause, handleResume, handleReset } =
     useTimer(0);

@@ -1,5 +1,5 @@
-import { useState, useRef, useMemo } from 'react';
-import { Button, Col, Input, Table, Row } from 'antd';
+import { useState, useMemo } from 'react';
+import { Button, Table } from 'antd';
 import type { ColumnsType } from 'antd/es/table';
 import moment from 'moment';
 import classNames from 'classnames';
@@ -7,30 +7,31 @@ import classNames from 'classnames';
 import Pause from '../../../../assets/svg/Pause';
 import Play from '../../../../assets/svg/Play';
 import ModalAddTask from '../components/ModalAddTask';
-import { STATUS_WORD, TITLE_MODAL } from '../type';
+import { STATUS_WORK, TITLE_MODAL } from '../type';
+import { FiCornerDownRight } from 'react-icons/fi';
 
 import styles from '../../HeaderScreen/Header.scss';
 
 interface DataType {
-  key: React.ReactNode;
-  name: string;
-  dealine: string;
-  expected: string;
-  intendTime: string;
-  subStaskList?: DataType[];
+  key: React.ReactNode | undefined;
+  name: string | undefined;
+  deadline: string | undefined;
+  expected: string | undefined;
+  intendTime: string | undefined;
+  subTaskList?: DataType[] | undefined;
 }
 const data: DataType[] = [
   {
     key: 1,
     name: 'Thiết kế UX phần mềm quản lý công việc',
-    dealine: '12/12/2022',
+    deadline: '12/12/2022',
     expected: '8',
     intendTime: '---',
-    subStaskList: [
+    subTaskList: [
       {
         key: 11,
         name: 'Nghiên cứu và phân tích user',
-        dealine: '12/12/2022',
+        deadline: '12/12/2022',
         expected: '8',
         intendTime: '---',
       },
@@ -38,23 +39,24 @@ const data: DataType[] = [
   },
   {
     key: 2,
-    name: 'Thiết kế UX phần mềm quản lý công việc sdsd',
-    dealine: '12/12/2022',
+    name: 'Thiết kế UI quản lý công việc',
+    deadline: '12/12/2022',
     expected: '8',
     intendTime: '---',
-    subStaskList: [],
+    subTaskList: [],
   },
 ];
 const cx = classNames.bind(styles);
 const ContentScreen = ({ drawerCheck }: any) => {
-  const [idSubTask, setIdSubTask] = useState();
+  const [idSubTask, setIdSubTask] = useState<any>();
   const [visible, setVisible] = useState<boolean>(false);
   const [title, setTitle] = useState<TITLE_MODAL>(TITLE_MODAL.ADD_TASK);
   const [dataList, setDataList] = useState<any>(data);
-  const [statusWord, setStatusWord] = useState<any>({
-    status: STATUS_WORD.PAUSE_WORD,
+  const [statusWork, setStatusWork] = useState<any>({
+    status: STATUS_WORK.PAUSE_WORK,
   });
-  const expandedRowRender = (e: any) => {
+
+  const expandedRowRender = (itemListTotal: DataType) => {
     const columns: any = [
       {
         title: 'Tên công việc',
@@ -78,8 +80,8 @@ const ContentScreen = ({ drawerCheck }: any) => {
       },
       {
         title: 'Hạn cuối',
-        dataIndex: 'dealine',
-        key: 'dealine',
+        dataIndex: 'deadline',
+        key: 'deadline',
         width: '20%',
       },
       {
@@ -101,8 +103,8 @@ const ContentScreen = ({ drawerCheck }: any) => {
                 alignItems: 'center',
               }}
             >
-              <Button onClick={() => handelToggleStatusWord(record)}>
-                {statusWord?.status == STATUS_WORD.PLAY_WORD && statusWord?.key == record.key ? (
+              <Button onClick={() => handelToggleStatusWork(record)}>
+                {statusWork?.status == STATUS_WORK.PLAY_WORK && statusWork?.key == record.key ? (
                   <div className="content-btn-status">
                     <Pause />
                     <span style={{ fontWeight: '500', marginLeft: 10 }}> Tạm dừng </span>
@@ -120,22 +122,26 @@ const ContentScreen = ({ drawerCheck }: any) => {
         },
       },
     ];
+
     return (
       <div>
-        {e?.subStaskList?.length > 0 && (
-          <Table
-            showHeader={false}
-            columns={columns}
-            dataSource={e?.subStaskList}
-            pagination={false}
-          />
+        {itemListTotal?.subTaskList && (
+          <>
+            <Table
+              showHeader={false}
+              columns={columns}
+              dataSource={itemListTotal?.subTaskList}
+              pagination={false}
+              // loading={true}
+            />
+          </>
         )}
         <Button
           className="btn-add-sub-task"
           onClick={() => {
             setTitle(TITLE_MODAL.ADD_SUB_TASK);
             setVisible(true);
-            setIdSubTask(e.key);
+            setIdSubTask(itemListTotal.key);
           }}
         >
           + Thêm sub-task
@@ -165,8 +171,8 @@ const ContentScreen = ({ drawerCheck }: any) => {
       },
       {
         title: 'Hạn cuối',
-        dataIndex: 'dealine',
-        key: 'dealine',
+        dataIndex: 'deadline',
+        key: 'deadline',
         width: '20%',
       },
       {
@@ -182,43 +188,43 @@ const ContentScreen = ({ drawerCheck }: any) => {
         width: '20%',
       },
     ],
-    [statusWord],
+    [statusWork],
   );
 
-  const handelToggleStatusWord = (record: any) => {
+  const handelToggleStatusWork = (record: any) => {
     const newData = dataList.map((item) => item);
     setDataList(newData);
-    setStatusWord({
+    setStatusWork({
       key: record?.key,
       status:
-        statusWord?.status === STATUS_WORD.PLAY_WORD
-          ? STATUS_WORD.PAUSE_WORD
-          : STATUS_WORD.PLAY_WORD,
+        statusWork?.status === STATUS_WORK.PLAY_WORK
+          ? STATUS_WORK.PAUSE_WORK
+          : STATUS_WORK.PLAY_WORK,
     });
   };
   const onSubmit = (values: any, titleModal: any) => {
-    const formatDate = moment(values.dealine).format('DD-MM-YYYY');
+    const formatDate = moment(values.deadline).format('DD-MM-YYYY');
     if (titleModal == TITLE_MODAL.ADD_TASK) {
       return setDataList([
         ...dataList,
         {
           key: Math.floor(Math.random() * 100),
           ...values,
-          dealine: formatDate,
+          deadline: formatDate,
           intendTime: '',
-          subStaskList: [],
+          subTaskList: [],
         },
       ]);
     }
     if (titleModal == TITLE_MODAL.ADD_SUB_TASK) {
       const newData = dataList.map((items: any) => {
         if (items.key == idSubTask) {
-          items.subStaskList = [
-            ...items.subStaskList,
+          items.subTaskList = [
+            ...items.subTaskList,
             {
               key: Math.floor(Math.random() * 100),
               ...values,
-              dealine: formatDate,
+              deadline: formatDate,
               intendTime: '',
             },
           ];
