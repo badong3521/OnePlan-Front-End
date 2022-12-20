@@ -1,4 +1,4 @@
-.container{
+.container {
   width: 100%;
   padding: 0 30px;
   margin: 0;
@@ -33,7 +33,7 @@
       border-radius: 3px;
 
       &:active {
-        background: #373B44;
+        background: #373b44;
         color: #fff;
       }
     }
@@ -47,7 +47,7 @@
       border-radius: 3px;
 
       &:active {
-        background: #373B44;
+        background: #373b44;
         color: #fff;
       }
     }
@@ -65,16 +65,21 @@
   .input {
     width: 300px;
   }
-  .btn-search{
+  .btn-search {
     margin-left: 16px;
   }
 }
-.work-list{
+.work-list {
   margin-top: 24px;
 }
-.btn-add-task{
+.btn-add-task {
   padding: 8px;
 }
-.btn-add-sub-task{
+.btn-add-sub-task {
   margin-top: 15px;
+}
+.content-btn-status{
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
