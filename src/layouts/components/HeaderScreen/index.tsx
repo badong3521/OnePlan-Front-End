@@ -6,6 +6,7 @@ import { PlayCircleOutlined, PauseCircleOutlined } from '@ant-design/icons';
 import { STATUS_WORK } from '../../../utils/StatusWork';
 import { Button, Col, Drawer, Input, Table, Row } from 'antd';
 import ModalAddTask from './components/ModalAddTask';
+import StopWatch from '../../../components/StopWatch';
 interface DataType {
   key: React.ReactNode;
   name: string;
@@ -41,7 +42,7 @@ const data: DataType[] = [
   },
 ];
 import { images } from '../../../assets';
-import SearchInput from './components/SearchInput';
+import SearchInput from './components/SearchTask/SearchInput';
 import { useState } from 'react';
 
 const cx = classNames.bind(styles);
@@ -162,7 +163,8 @@ function HeaderScreen({ drawerCheck }) {
           <button className={cx('btn-import-excel')}>Thêm báo cáo</button>
         </div>
       </div>
-        <button onClick={() => drawerCheck?.current?.show()}>Drawer Open</button>
+      <button onClick={() => drawerCheck?.current?.show()}>Drawer Open</button>
+      <StopWatch />
       {/* <div className={cx('container')}>
         <div className={cx('work-list')}>
           <Table
