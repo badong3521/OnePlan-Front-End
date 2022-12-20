@@ -105,12 +105,12 @@ const ContentScreen = ({ drawerCheck }: any) => {
                 {statusWord?.status == STATUS_WORD.PLAY_WORD && statusWord?.key == record.key ? (
                   <div className="content-btn-status">
                     <Pause />
-                    <span style={{ fontWeight: '500' }}> Tạm dừng </span>
+                    <span style={{ fontWeight: '500', marginLeft: 10 }}> Tạm dừng </span>
                   </div>
                 ) : (
                   <div className="content-btn-status">
                     <Play />
-                    Bắt đầu{' '}
+                    <span style={{ fontWeight: '500', marginLeft: 10 }}>Bắt đầu </span>
                   </div>
                 )}
               </Button>
