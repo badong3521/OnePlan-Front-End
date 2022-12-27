@@ -27,7 +27,6 @@ const DrawerScreen: ForwardRefRenderFunction<RefModalPopup> = ({}, ref) => {
 
   useImperativeHandle(ref, () => ({
     data: (value: any) => {
-      console.log("value" , value)
       setData(value);
     },
     show: () => {

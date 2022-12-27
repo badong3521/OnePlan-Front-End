@@ -1,4 +1,4 @@
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import { Button, Table } from 'antd';
 import type { ColumnsType } from 'antd/es/table';
 import moment from 'moment';
@@ -9,8 +9,10 @@ import Play from '../../../../assets/svg/Play';
 import ModalAddTask from '../components/ModalAddTask';
 import { STATUS_WORK, TITLE_MODAL } from '../type';
 import { FiCornerDownRight } from 'react-icons/fi';
+import { api } from '../../../../service';
 
 import styles from '../../HeaderScreen/Header.scss';
+import { useSelector } from 'react-redux';
 
 interface DataType {
   key: React.ReactNode | undefined;
@@ -55,6 +57,16 @@ const ContentScreen = ({ drawerCheck }: any) => {
   const [statusWork, setStatusWork] = useState<any>({
     status: STATUS_WORK.PAUSE_WORK,
   });
+
+  // async function getListTask() {
+  //   const response = await api.getListTask();
+  //   // eslint-disable-next-line @typescript-eslint/no-shadow
+  //   const { data } = response;
+  //   // console.log('DATA', data);
+  // }
+  // useEffect(() => {
+  //   getListTask();
+  // }, []);
 
   const expandedRowRender = (itemListTotal: DataType) => {
     const columns: any = [

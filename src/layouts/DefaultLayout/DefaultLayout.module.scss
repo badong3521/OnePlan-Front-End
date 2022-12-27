@@ -5,12 +5,3 @@
   height: 100vh;
 }
 
-.container {
-  width: var(--default-layout-header-width);
-  display: flex;
-}
-
-.content {
-  flex: 1;
-  min-height: 600px;
-}

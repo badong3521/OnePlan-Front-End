@@ -7,10 +7,10 @@ import AddTask from '../utils/AddTask';
 
 const api = apisauce.create({
   baseURL: DEFAULT_API,
-  headers: {
-    Authorization: `e1fb37ddd3255539c30ba84cdd53a4dce0e70dbdfe060838f8aa95206feff381`,
-    User_ID: 1,
-  },
+  // headers: {
+  //   "Access-Control-Allow-Origin": "*",
+  //   "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS"
+  // },
   timeout: 10000,
 });
 

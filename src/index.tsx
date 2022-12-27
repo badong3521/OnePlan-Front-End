@@ -2,19 +2,29 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import reportWebVitals from './reportWebVitals';
 import GlobalStyles from './components/GlobalStyles';
-import { Provider } from 'react-redux';
+import myReducer from '../src/redux/reducer/reducer';
 
-// import store from './store';
+import createSagaMiddleware from 'redux-saga';
+import { Provider } from 'react-redux';
+import { createStore, combineReducers, applyMiddleware } from 'redux';
+import postsSaga from './saga/saga';
+
+const sagaMiddleware = createSagaMiddleware();
+const rootReducer = combineReducers({ myReducer });
+const store = createStore(rootReducer, applyMiddleware(sagaMiddleware));
+
+sagaMiddleware.run(postsSaga);
+
 import App from './App';
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 root.render(
   <React.StrictMode>
-    {/* <Provider store={store}> */}
-    <GlobalStyles>
-      <App />
-    </GlobalStyles>
-    {/* </Provider> */}
+    <Provider store={store}>
+      <GlobalStyles>
+        <App />
+      </GlobalStyles>
+    </Provider>
   </React.StrictMode>,
 );
 

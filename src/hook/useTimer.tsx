@@ -6,7 +6,6 @@ const useTimer = (initialState = 0) => {
   const [isActive, setIsActive] = useState<any>(false);
   const [isPaused, setIsPaused] = useState<any>(false);
   const countRef = useRef<any>(null);
-  console.log('timer', timer);
 
   const handleStart = () => {
     setIsActive(true);
