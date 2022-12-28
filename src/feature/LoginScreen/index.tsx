@@ -1,25 +1,24 @@
-import { useEffect, useState, createContext } from 'react';
+import { useState } from 'react';
 import 'firebase/compat/auth';
-import { Formik, Field, Form, FormikHelpers } from 'formik';
+import { Formik, Field, Form } from 'formik';
 import classNames from 'classnames/bind';
 import * as Yup from 'yup';
 import { Link } from 'react-router-dom';
+import { Button, message} from 'antd';
 import { images } from '../../assets';
+import { useNavigate } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
 
 import ErrorInput from '../../components/ErrorMessageInput';
 import styles from './Login.scss';
 import { Account } from '../../utils/Account';
 import { save } from '../../utils/storage';
 import { api } from '../../service';
-import { useNavigate } from 'react-router-dom';
-import { Button } from 'antd';
-import { useSelector, useDispatch } from 'react-redux';
 import { getUserInfo } from '../../redux/actions/actions';
 
 const cx = classNames.bind(styles);
 
 function LoginScreen() {
-  const [user, setUserInfo] = useState<Account>();
   const dispatch = useDispatch();
   const navigation = useNavigate();
   const validationSchema = Yup.object({
@@ -27,32 +26,37 @@ function LoginScreen() {
     password: Yup.string().required('Password is required!').min(4, 'Mật khẩu dài hơn 4 kí tự'),
   });
   const [fetching, setFetching] = useState<boolean>();
+  const [messageApi, contextHolder] = message.useMessage();
 
-  const renderError = (message: any) => <p className={cx('error-message')}>{message}</p>;
+  const error = () => {
+    messageApi.open({
+      type: 'error',
+      content: 'Đăng nhập không thành công!',
+    });
+  };
+
+  const renderError = (messageError: any) => <p className={cx('error-message')}>{messageError}</p>;
 
   async function handleSignIn(values: Account) {
-    // const response = await api.signIn(values);
-    setUserInfo(values);
     dispatch(getUserInfo(values));
-    navigation('/');
+    setFetching(true);
+    const response = await api.signIn(values);
+    console.log('RES', response);
 
-    // if (response) {
-    //   const { data } = response;
-    //   if (data.user_id === '1') {
-    //     console.log('DATA', data);
-    //     save('user', data);
-    //     navigation('/');
-    //   }
-    // } else {
-    //   console.log('Login failed');
-    // }
+    setFetching(false);
+    if (response.data.error_code === 401) {
+      error();
+    } else if (response.ok) {
+      navigation('/');
+    }
+
+    const users = useSelector((state: any) => state);
+    save('token', users.token);
   }
-  // const handleSignIn1 = () => {
-  //   // console.log("user" , user)
-  // };
 
   return (
     <>
+      {contextHolder}
       <div className={cx('wrapper-login')}>
         <Formik
           initialValues={{
@@ -77,14 +81,22 @@ function LoginScreen() {
                 <ErrorInput name="password" render={renderError} />
               </span>
               <div className={cx('btn')}>
-                {/* <button type="submit" className={cx('btn-login')}>
+                <Button
+                  htmlType="submit"
+                  className={cx('btn-login')}
+                  size="large"
+                  loading={fetching}
+                >
                   Đăng nhập
-                </button> */}
-                <Button htmlType="submit" size="large" loading={fetching}>
-                  Loading
                 </Button>
-                <button className={cx('btn-register')}>Đăng ký</button>
-                {/* <div onClick={() => handleSignIn1()}>dang ki</div> */}
+                <Button
+                  // htmlType="submit"
+                  className={cx('btn-login')}
+                  size="large"
+                  // loading={fetching}
+                >
+                  Đăng ký
+                </Button>
               </div>
             </div>
           </Form>

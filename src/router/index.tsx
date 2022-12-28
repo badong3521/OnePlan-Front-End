@@ -1,8 +1,8 @@
 //LayoutOnly
 import ScreenMain from '../pages/Screens';
 import LoginScreen from '../feature/LoginScreen';
-//Page
 
+//Page
 const NoThingsRoute = () => {
   return (
     <main
@@ -25,15 +25,14 @@ interface Page {
   component: any;
 }
 
-const publicRoutes: Page[] = [
-  { path: '*', component: NoThingsRoute, layout: false },
-  { path: '/', component: ScreenMain, layout: true },
-  { path: '/login', component: LoginScreen, layout: false },
-];
+  const publicRoutes: Page[] = [
+    { path: '/login', component: LoginScreen, layout: false },
+  ];
+  
+  const privateRoutes: Page[] = [
+    { path: '*', component: NoThingsRoute, layout: false },
+    { path: '/', component: ScreenMain, layout: true },
+    { path: '/login', component: LoginScreen, layout: false },
+  ];
 
-const privateRoutes: Page[] = [
-  { path: '*', component: NoThingsRoute, layout: false },
-  { path: '/', component: ScreenMain, layout: true },
-];
-
-export { publicRoutes, privateRoutes };
+export { publicRoutes , privateRoutes};

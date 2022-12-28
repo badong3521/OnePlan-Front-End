@@ -1,17 +1,20 @@
-import { useEffect } from 'react';
+import { useState } from 'react';
 import { Fragment } from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { publicRoutes } from './router/index';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { privateRoutes, publicRoutes } from './router/index';
 import DefaultLayout from './layouts/DefaultLayout';
+import LoginScreen from './feature/LoginScreen';
 
 function App() {
+  const users: any = useSelector((state) => state);
+
   return (
     <>
       <BrowserRouter>
         <Routes>
-          {publicRoutes.map((route, index) => {
+          {privateRoutes.map((route, index) => {
             const PageComponent = route.component;
-
             let Layout: any;
             if (route.layout === true) {
               Layout = DefaultLayout;
@@ -23,9 +26,13 @@ function App() {
                 key={index}
                 path={route.path}
                 element={
-                  <Layout>
-                    <PageComponent />
-                  </Layout>
+                  users.myReducer.accessToken === undefined ? (
+                    <LoginScreen />
+                  ) : (
+                    <Layout>
+                      <PageComponent />
+                    </Layout>
+                  )
                 }
               />
             );

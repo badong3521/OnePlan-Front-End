@@ -1,19 +1,15 @@
-import React from 'react';
 import classNames from 'classnames';
 import styles from './Slider.scss';
 import { images } from '../../../assets';
 import { useSelector } from 'react-redux';
+import { save } from '../../../utils/storage';
 
 const cx = classNames.bind(styles);
 
-export default function SliderScreen({drawerCheck}) {
-
-  
-  const USErSELECTOR = useSelector((state: any) => state);
-  console.log('USErSELECTORCONTENT',  USErSELECTOR);
-  const {token ,user} = USErSELECTOR
-  // console.log("TOKEN" , token)
-  
+export default function SliderScreen({ drawerCheck }) {
+  const users = useSelector((state: any) => state);
+  const { myReducer } = users;
+  save('users', myReducer);
 
   return (
     <>
@@ -22,8 +18,8 @@ export default function SliderScreen({drawerCheck}) {
           <div className={cx('information-user')}>
             <img className={cx('avatar')} src={images.logo} width={60} />
             <div className={cx('info')}>
-              <p className={cx('name')}>{user?.user_nicename}</p>
-              <p className={cx('gmail')}>{user?.user_email}</p>
+              <p className={cx('name')}>{myReducer?.user_nicename}</p>
+              <p className={cx('gmail')}>{myReducer?.user_email}</p>
             </div>
           </div>
           <div className={cx('group-company')}>
