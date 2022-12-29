@@ -19,14 +19,12 @@ const INITIAL_STATE = {
 };
 
 const myReducer = (state = INITIAL_STATE, action) => {
-  console.log('ACTION', action);
   switch (action.type) {
     case USER:
       return {
         ...state,
       };
     case USER_SUCCESS:
-      console.log('ACTIONS', action.payload);
       const token = action.payload.token;
       return {
         ...state,
