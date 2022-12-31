@@ -41,17 +41,12 @@ function LoginScreen() {
     dispatch(getUserInfo(values));
     setFetching(true);
     const response = await api.signIn(values);
-    console.log('RES', response);
-
     setFetching(false);
     if (response.data.error_code === 401) {
       error();
     } else if (response.ok) {
       navigation('/');
     }
-
-    const users = useSelector((state: any) => state);
-    save('token', users.token);
   }
 
   return (

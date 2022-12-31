@@ -15,7 +15,7 @@ function* handleGetUserInfo(action) {
       payload: data,
     });
   } catch (error) {
-    console.log('Lỗi xảy ra ', error);
+    console.log('Lỗi xảy ra API Saga!', error);
   }
 }
 

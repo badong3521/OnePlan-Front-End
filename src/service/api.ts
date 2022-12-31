@@ -1,6 +1,6 @@
 import apisauce from 'apisauce';
 import { DEFAULT_API } from '../utils/constants';
-// import { load } from '../utils/storage';
+import { load } from '../utils/storage';
 import { Account } from '../utils/Account';
 import ListTask from '../utils/ListTask';
 import AddTask from '../utils/AddTask';
@@ -17,6 +17,8 @@ const api = apisauce.create({
 function CreateApi() {
   function signIn(body: Account) {
     console.log('BODY', body);
+    console.log('API LOGIN', load('token'));
+
     const response = api.post<any>('gettoken', body);
     return response;
   }

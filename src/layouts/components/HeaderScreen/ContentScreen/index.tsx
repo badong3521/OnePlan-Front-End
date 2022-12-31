@@ -58,16 +58,6 @@ const ContentScreen = ({ drawerCheck }: any) => {
     status: STATUS_WORK.PAUSE_WORK,
   });
 
-  // async function getListTask() {
-  //   const response = await api.getListTask();
-  //   // eslint-disable-next-line @typescript-eslint/no-shadow
-  //   const { data } = response;
-  //   // console.log('DATA', data);
-  // }
-  // useEffect(() => {
-  //   getListTask();
-  // }, []);
-
   const expandedRowRender = (itemListTotal: DataType) => {
     const columns: any = [
       {
